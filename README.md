@@ -52,8 +52,8 @@ If you find the system to be lacking, you should improve it to meet the stated r
 
 The Gradle build is authoritative, meaning that tests must pass when run with Gradle from the command line.
 
-In order from most to least preferred, you can submit your solution via:
+You can submit your solution by:
 
-- pull request
-- link to a forked repo
-- an emailed zip of your project
+- providing a link to a forked repo with your solution,
+- by emailing us a zip of your project, or
+- by coming up with a way of submitting it that's cooler than at least one of the other options.
