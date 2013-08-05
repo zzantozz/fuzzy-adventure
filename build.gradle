@@ -5,7 +5,6 @@ repositories { mavenCentral() }
 
 dependencies {
     compile 'org.codehaus.groovy:groovy:2.1.1'
-    compile 'org.codehaus.gpars:gpars:1.0.0'
     compile 'org.apache.activemq:activemq-broker:5.8.0'
     compile 'org.springframework:spring-jms:3.2.3.RELEASE'
     compile 'org.springframework:spring-jdbc:3.2.3.RELEASE'
