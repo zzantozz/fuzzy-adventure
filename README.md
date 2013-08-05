@@ -30,9 +30,9 @@ all outputs must be available within 2000 milliseconds. The database is the slow
 Solution Guidelines
 -------------------
 
-Your primary goal is to express the system requirements in automated tests. The IntegrationTest class has a couple of
-basic tests in it to get you started. This is the class where additional tests should be written that verify the
-behavior of the system overall.
+Your primary goal is to express the system requirements in automated tests. The IntegrationTest class has some basic
+tests in it to get you started. This is the class where additional tests should be written that verify the behavior of
+the system overall.
 
 You may not remove the artifical delay that's imposed on the database. Otherwise, you may rewrite any or all of the
 code at your whim. The provided implementation is only there so that tests can be written and run against it.

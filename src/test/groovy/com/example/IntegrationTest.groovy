@@ -12,6 +12,7 @@ import spock.lang.Specification
 class IntegrationTest extends Specification {
     @Shared def application = new Application()
     def jms = new JmsAccessor()
+    def jdbc = new JdbcAccessor()
 
     def setupSpec() {
         application.start()
@@ -35,5 +36,14 @@ class IntegrationTest extends Specification {
 
         then:
         jms.receiveFromNumberOutput() == 5
+    }
+
+    def 'sanity check of database storage'() {
+        when:
+        jms.sendToNumberInput(2)
+
+        then:
+        jms.receiveFromNumberOutput() // wait for processing
+        jdbc.insertedNumbers.contains(2L)
     }
 }
