@@ -6,6 +6,14 @@ requirements. It contains a working system but lacks appropriate tests. Your job
 Below you'll find the system requirements and guideliness concerning your solution. To jump in and see the system
 working, check out the Application class. It has a main method that you can run to see the system in action.
 
+Getting Started
+---------------
+
+To get started working on the project, clone the repository or download the zip (link available on the Github page). The
+project is built with Gradle. If you don't have Gradle, don't worry: the project contains a script to bootstrap Gradle
+for you. Just run `gradlew test` to run all the tests. `gradlew idea` will generate IntelliJ IDEA project files, and
+`gradlew eclipse` will generate Eclipse project files.
+
 System Requirements
 -------------------
 
