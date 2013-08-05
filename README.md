@@ -25,14 +25,15 @@ and output is received by receiving messages from the queue named "NumberOutput"
 - Input and output messages will be in the form of a JMS TextMessage. The text of the message is the decimal
 representation of the number in question.
 - Processing of input proceeds in three phases:
-    1. First, determine if the input number is prime. If so, send the same number to the second phase. If not, find the
-    next higher prime number and send that to the second phase.
-    2. Next, the prime number calculated in the first phase must be recorded in a database. Note that this means the
-    database should never contain a number that isn't prime.
-    3. Finally, if the original input was prime, increment the number by one. Otherwise, do nothing. This is the result
-    which should be sent to the output queue.
+    1. Determine if the input number is prime. If so, send the input number to the second phase. If not, calculate the
+    next higher prime number, and send that to the second phase.
+    2. The prime number calculated in the first phase must be recorded in a database. Send the same number to the third
+    phase.
+    3. Using the number from phase two: if the original input was prime, increment the number by one and send it to the
+    output queue. If it wasn't prime, send the number to the output queue without incrementing.
 - The system must provide near-real-time processing for up to 100 simultaneous inputs. If 100 input messages are sent,
 all outputs must be available within 2000 milliseconds. The database is the slow part of the system.
+- Due to the processing rules, every number recorded in the database must be prime.
 - Output order is irrelevant.
 
 Examples:
