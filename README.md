@@ -35,6 +35,15 @@ representation of the number in question.
 all outputs must be available within 2000 milliseconds. The database is the slow part of the system.
 - Output order is irrelevant.
 
+Examples:
+
+1. Send the number "13" to NumberInput. The input is prime, so it passes through phase one unchanged. The number "13" is
+recorded in the database. Finally, since the input was prime, it's incremented, and the number "14" is sent to
+NumberOutput.
+2. Send the number "24" to NumberInput. The input isn't prime, so phase one finds the next higher prime number, which is
+"29", and passes that to the next phase. The number "29" is recorded in the database. Finally, since the input wasn't
+prime, the number "29" is sent to NumberOutput without being incremented.
+
 Solution Guidelines
 -------------------
 
