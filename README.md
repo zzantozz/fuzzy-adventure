@@ -51,3 +51,9 @@ test", then that feature probably isn't tested as thoroughly as it needs to be. 
 If you find the system to be lacking, you should improve it to meet the stated requirements.
 
 The Gradle build is authoritative, meaning that tests must pass when run with Gradle from the command line.
+
+In order from most to least preferred, you can submit your solution via:
+
+- pull request
+- link to a forked repo
+- an emailed zip of your project
