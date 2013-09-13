@@ -1,5 +1,6 @@
 package com.example
 
+import spock.lang.Shared
 import spock.lang.Specification
 
 /**
@@ -9,14 +10,10 @@ import spock.lang.Specification
  * Time: 11:06 AM
  */
 class JdbcAccessorTest extends Specification {
-    def accessor = new JdbcAccessor()
+    @Shared def accessor = new JdbcAccessor()
 
-    def setup() {
+    def setupSpec() {
         accessor.init()
-    }
-
-    def cleanup() {
-        accessor.destroy()
     }
 
     def 'insert and get works'() {

@@ -25,10 +25,6 @@ public class JdbcAccessor {
         jdbcTemplate.execute("create table if not exists numbers (the_number bigint)");
     }
 
-    public void destroy() {
-        jdbcTemplate.execute("drop all objects");
-    }
-
     public void insert(long number) {
         artificialDelay();
         jdbcTemplate.update("insert into numbers values(?)", number);
