@@ -17,7 +17,8 @@ import java.util.List;
  * Time: 10:12 AM
  */
 public class JdbcAccessor {
-    private DataSource dataSource = new SimpleDriverDataSource(new Driver(), "jdbc:h2:mem:bob;DB_CLOSE_DELAY=-1");
+    public static final String JDBC_URL = "jdbc:h2:mem:bob;DB_CLOSE_DELAY=-1";
+    private DataSource dataSource = new SimpleDriverDataSource(new Driver(), JDBC_URL);
     private JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
     public void init() {

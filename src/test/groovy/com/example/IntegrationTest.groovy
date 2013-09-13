@@ -1,5 +1,8 @@
 package com.example
 
+import groovy.sql.Sql
+import org.apache.activemq.ActiveMQConnectionFactory
+import org.springframework.jms.core.JmsTemplate
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -11,8 +14,12 @@ import spock.lang.Specification
  */
 class IntegrationTest extends Specification {
     @Shared def application = new Application()
-    def jms = new JmsAccessor()
-    def jdbc = new JdbcAccessor()
+    @Shared def jms = new JmsTemplate().with {
+        connectionFactory = new ActiveMQConnectionFactory(JmsAccessor.BROKER_URI)
+        receiveTimeout = 2000
+        return it
+    }
+    @Shared def sql = Sql.newInstance(JdbcAccessor.JDBC_URL)
 
     def setupSpec() {
         application.start()
@@ -20,30 +27,31 @@ class IntegrationTest extends Specification {
 
     def cleanupSpec() {
         application.stop()
+        sql.close()
     }
 
     def 'sanity check of overall system for first prime'() {
         when:
-        jms.sendToNumberInput(2)
+        jms.convertAndSend('NumberInput', '2')
 
         then:
-        jms.receiveFromNumberOutput() == 3
+        jms.receiveAndConvert('NumberOutput') == '3'
     }
 
     def 'sanity check of overall system for first non-prime'() {
         when:
-        jms.sendToNumberInput(4)
+        jms.convertAndSend('NumberInput', '4')
 
         then:
-        jms.receiveFromNumberOutput() == 5
+        jms.receiveAndConvert('NumberOutput') == '5'
     }
 
     def 'sanity check of database storage'() {
         when:
-        jms.sendToNumberInput(2)
+        jms.convertAndSend('NumberInput', '2')
 
         then:
-        jms.receiveFromNumberOutput() // wait for processing
-        jdbc.insertedNumbers.contains(2L)
+        jms.receiveAndConvert('NumberOutput') // wait for processing
+        sql.rows('select the_number from numbers').collect{ it.the_number }.contains(2L)
     }
 }

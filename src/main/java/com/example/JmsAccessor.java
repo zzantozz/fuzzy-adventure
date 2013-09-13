@@ -18,7 +18,7 @@ import java.util.List;
  * Time: 10:14 AM
  */
 public class JmsAccessor {
-    private static final String BROKER_URI = "vm://bob?broker.persistent=false";
+    public static final String BROKER_URI = "vm://bob?broker.persistent=false";
     private ActiveMQConnectionFactory cf = new ActiveMQConnectionFactory(BROKER_URI);
     private JmsTemplate jmsTemplate = new JmsTemplate(cf) {{
         setReceiveTimeout(5000);
